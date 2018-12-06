@@ -7,20 +7,20 @@ if (isset($_POST['id'])) {
     require_once "connect.php";
 
     $wszystko_dobrze = true;
-    echo $numer_zlecenia = $_POST['numer_zlecenia'];
-    echo $typ_zlecenia = $_POST['typ_zlecenia'];
-    echo $opis_zlecenia = $_POST['opis_zlecenia'];
-    echo $sla = $_POST['sla'];
-    echo $kontrahent = $_POST['kontrahent'];
-    echo $adres = $_POST['adres'];
-    echo $kontakt = $_POST['kontakt'];
-    echo $pracownik = $_POST['pracownik'];
-    echo $status = $_POST['status'];
-    echo $sprzet = $_POST['sprzet'];
-    echo $sn = $_POST['sn'];
-    echo $tid = $_POST['tid'];
-    echo $id = $_POST['id'];
-    echo $realizacja_data = $_POST['realizacja_data'];
+    $numer_zlecenia = $_POST['numer_zlecenia'];
+    $typ_zlecenia = $_POST['typ_zlecenia'];
+    $opis_zlecenia = $_POST['opis_zlecenia'];
+    $sla = $_POST['sla'];
+    $kontrahent = $_POST['kontrahent'];
+    $adres = $_POST['adres'];
+    $kontakt = $_POST['kontakt'];
+    $pracownik = $_POST['pracownik'];
+    $status = $_POST['status'];
+    $sprzet = $_POST['sprzet'];
+    $sn = $_POST['sn'];
+    $tid = $_POST['tid'];
+    $id = $_POST['id'];
+    $realizacja_data = $_POST['realizacja_data'];
     // $status_zlecenia = $_POST['status_zlecenia'];
 
     mysqli_report(MYSQLI_REPORT_STRICT);

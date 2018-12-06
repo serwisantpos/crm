@@ -25,7 +25,7 @@ mysqli_report(MYSQLI_REPORT_STRICT);
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Zestawienie urządzeń</title>
+  <title>Edycja profilu</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -220,6 +220,7 @@ znacznik;
   </aside>
 
 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -263,9 +264,19 @@ try {
             if ($number > 0) {
 
                 $row = $result->fetch_assoc();
-
+                $_SESSION['id_pracownika'] = $row['id_pracownika'];
                 $_SESSION['login'] = $row['login'];
-                echo $_SESSION['login'];exit();
+                $_SESSION['imie'] = $row['imie'];
+                $_SESSION['nazwisko'] = $row['nazwisko'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['haslo'] = $row['haslo'];
+                $_SESSION['adres_zamieszkania'] = $row['adres_zamieszkania'];
+                $_SESSION['admin'] = $row['admin'];
+                $_SESSION['data_rejestracji'] = $row['data_rejestracji'];
+                $_SESSION['edukacja'] = $row['edukacja'];
+                $_SESSION['skills'] = $row['skills'];
+                $_SESSION['degree'] = $row['degree'];
+                $_SESSION['notatki'] = $row['notatki'];
             }
             $result->free_result();
 
@@ -278,7 +289,7 @@ try {
     echo '<br/>Indormacja developerska:' . $e;
 }
 ?>
-            <form role="form" action="walidacja_edycja_profil.php" method="post">
+            <form role="form" autocomplete="off" action="walidacja_edycja_profil.php" method="post">
         <div class="box-body">
         <div class="col-md-6">
           <!-- general form elements -->
@@ -291,7 +302,10 @@ try {
                 <div class="form-group">
                   <label for="exampleInputEmail1">Login: <?php echo $_SESSION['login']; ?></label>
                   <input type="text" name="login" class="form-control" id="exampleInputEmail1" placeholder="Login" required>
-
+                  <?php if (isset($_SESSION['e_login'])) {
+    echo $_SESSION['e_login'];
+}
+unset($_SESSION['e_login']);?>
                 </div>
 
 
@@ -308,40 +322,68 @@ try {
                 <div class="form-group">
                   <label for="exampleInputPassword1">Email: <?php echo $_SESSION['email']; ?></label>
                   <input required type="email" name="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                  <?php if (isset($_SESSION['e_email'])) {
+    echo $_SESSION['e_email'];
+}
+unset($_SESSION['e_email']);?>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Stare hasło: </label>
                   <input required type="password" name="passwrd" class="form-control" id="exampleInputPassword1" placeholder="Stare hasło">
+                <?php if (isset($_SESSION['e_haslo'])) {
+    echo $_SESSION['e_haslo'];
+}
+unset($_SESSION['e_haslo']);?>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Hasło: </label>
+                  <label for="exampleInputPassword1">Nowe hasło: </label>
                   <input required type="password" name="passwrd1" class="form-control" id="exampleInputPassword1" placeholder="Nowe hasło">
+                  <?php if (isset($_SESSION['e_haslo1'])) {
+    echo $_SESSION['e_haslo1'];
+}
+unset($_SESSION['e_haslo1']);?>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Potwierdź hasło: <?php echo $_SESSION['haslo']; ?></label>
+                  <label for="exampleInputPassword1">Potwierdź hasło:</label>
                   <input required type="password" name="passwrd2" class="form-control" id="exampleInputPassword1" placeholder="Potwierdź nowe hasło">
+                  <?php if (isset($_SESSION['e_haslo2'])) {
+    echo $_SESSION['e_haslo2'];
+}
+unset($_SESSION['e_haslo2']);?>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Adres zamieszkania: </label>
-                  <input required type="text" name="adres" class="form-control" id="exampleInputPassword1" placeholder="Adres zamieszkania">
+                  <label for="exampleInputPassword1">Adres zamieszkania: <?php echo $_SESSION['adres_zamieszkania']; ?></label>
+                  <input required type="text" name="adres_zamieszkania" class="form-control" id="exampleInputPassword1" placeholder="Adres zamieszkania">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Edukacja: </label>
+                  <label>Typ: <?php echo $_SESSION['admin']; ?></label>
+                  <select name="admin" required>
+                    <option value="1">Administrator</option>
+
+                    <option value="0">Serwisant</option>
+
+
+
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Edukacja: <?php echo $_SESSION['edukacja']; ?></label>
                   <input required type="text" name="edukacja" class="form-control" id="exampleInputPassword1" placeholder="Edukacja">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Umiejętności: </label>
+                  <label for="exampleInputPassword1">Umiejętności: <?php echo $_SESSION['skills']; ?></label>
                   <input required type="text" name="skills" class="form-control" id="exampleInputPassword1" placeholder="Skills">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Stopień naukowy/tytuł zawodowy: </label>
+                  <label for="exampleInputPassword1">Stopień naukowy/tytuł zawodowy: <?php echo $_SESSION['degree']; ?></label>
                   <input required type="text" name="degree" class="form-control" id="exampleInputPassword1" placeholder="Stopień naukowy/tytuł zawodowy">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Notatki: </label>
+                  <label for="exampleInputPassword1">Notatki: <?php echo $_SESSION['notatki']; ?></label>
                   <input required type="text" name="notatki" class="form-control" id="exampleInputPassword1" placeholder="Notatki">
                 </div>
-
+                <input name="id" class="form-control" type="hidden" value="<?php echo $_SESSION['id_pracownika']; ?>">
                 <script>
                   $("#datetime").datetimepicker();
                 </script>

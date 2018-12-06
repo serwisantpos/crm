@@ -8,7 +8,7 @@ if (!isset($_SESSION['udanelogowanie']) && $_SESSION['udanelogowanie'] != true) 
 
 }
 if ($_SESSION['admin'] == 0) {
-    $_SESSION['e_dostep_pracowniczy'] = '<span style="color:red">Nie masz uprawnień do dodawania zleceń!</span>';
+    $_SESSION['e_dostep_pracowniczy'] = '<span style="color:red">Nie masz uprawnień do przeglądania wszystkich zleceń!</span>';
     header('Location: indexx.php');
     exit();
 }

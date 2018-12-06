@@ -8,51 +8,6 @@ if (!isset($_SESSION['udanelogowanie']) && $_SESSION['udanelogowanie'] != true) 
 
 }
 
-$email = $_SESSION['email'];
-require_once "connect.php";
-mysqli_report(MYSQLI_REPORT_STRICT);
-try {
-    $cl = new mysqli($host_name, $database_username, $database_password, $database_name);
-    if ($cl->connect_errno != 0) {
-        throw new Exception(mysqli_connect_errno());
-    } else {
-
-        if ($result = $cl->query("SELECT imie, nazwisko, data_rejestracji FROM Pracownicy WHERE email='$email'")) {
-            $number = $result->num_rows;
-            if ($number > 0) {
-                $row = $result->fetch_assoc();
-                $_SESSION['imie'] = $row['imie'];
-                $_SESSION['nazwisko'] = $row['nazwisko'];
-                $_SESSION['data_rejestracji'] = $row['data_rejestracji'];
-
-            }
-        }
-
-        $result->free_result();
-        if ($result = $cl->query("SELECT * FROM Zlecenia")) {
-            $suma_zlecen = $result->num_rows;
-            $result->free_result();
-        }
-        if ($result = $cl->query("SELECT * FROM Zlecenia WHERE status='otwarte'")) {
-            $suma_zlecen_otwartych = $result->num_rows;
-            $result->free_result();
-        }
-        if ($result = $cl->query("SELECT * FROM Zlecenia WHERE status='zamkniete'")) {
-            $suma_zlecen_zamknietych = $result->num_rows;
-            $result->free_result();
-        }
-        if ($result = $cl->query("SELECT email FROM Pracownicy")) {
-            $ilosc_pracownikow = $result->num_rows;
-            $result->free_result();
-        }
-    }
-    $cl->close();
-
-} catch (Exception $e) {
-    echo '<span style="color:red">Błąd serwera! </span>';
-    echo '<br/>Indormacja developerska:' . $e;
-}
-
 ?>
 
 
@@ -275,12 +230,7 @@ znacznik;
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">email</li>
       </ol>
-      <h1>   <?php if (isset($_SESSION['e_dostep_pracowniczy'])) {
-    echo $_SESSION['e_dostep_pracowniczy'];
-}
 
-unset($_SESSION['e_dostep_pracowniczy']);
-?></h1>
     </section>
 
     <!-- Main content -->

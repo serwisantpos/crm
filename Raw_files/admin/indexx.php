@@ -430,11 +430,10 @@ znacz;
                     echo $row['zadanie'];
                     echo <<<znacznik
 </span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+
                   <!-- General tools such as edit or delete-->
                   <div class="tools">
-                    <i class="fa fa-edit"></i>
+
                     <a href="usun_zadanie.php?id=$row[id_todolist]"><i class="fa fa-trash-o"></i></a>
                   </div>
                 </li>
