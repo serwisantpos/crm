@@ -268,10 +268,8 @@ try {
                 $_SESSION['login'] = $row['login'];
                 $_SESSION['imie'] = $row['imie'];
                 $_SESSION['nazwisko'] = $row['nazwisko'];
-                $_SESSION['email'] = $row['email'];
                 $_SESSION['haslo'] = $row['haslo'];
                 $_SESSION['adres_zamieszkania'] = $row['adres_zamieszkania'];
-                $_SESSION['admin'] = $row['admin'];
                 $_SESSION['data_rejestracji'] = $row['data_rejestracji'];
                 $_SESSION['edukacja'] = $row['edukacja'];
                 $_SESSION['skills'] = $row['skills'];
@@ -319,14 +317,7 @@ unset($_SESSION['e_login']);?>
                   <input required type="text" name="nazwisko" class="form-control" id="exampleInputPassword1" placeholder="Nazwisko">
 
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Email: <?php echo $_SESSION['email']; ?></label>
-                  <input required type="email" name="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
-                  <?php if (isset($_SESSION['e_email'])) {
-    echo $_SESSION['e_email'];
-}
-unset($_SESSION['e_email']);?>
-                </div>
+
                 <div class="form-group">
                   <label for="exampleInputPassword1">Stare hasło: </label>
                   <input required type="password" name="passwrd" class="form-control" id="exampleInputPassword1" placeholder="Stare hasło">
@@ -355,17 +346,7 @@ unset($_SESSION['e_haslo2']);?>
                   <label for="exampleInputPassword1">Adres zamieszkania: <?php echo $_SESSION['adres_zamieszkania']; ?></label>
                   <input required type="text" name="adres_zamieszkania" class="form-control" id="exampleInputPassword1" placeholder="Adres zamieszkania">
                 </div>
-                <div class="form-group">
-                  <label>Typ: <?php echo $_SESSION['admin']; ?></label>
-                  <select name="admin" required>
-                    <option value="1">Administrator</option>
 
-                    <option value="0">Serwisant</option>
-
-
-
-                  </select>
-                </div>
 
                 <div class="form-group">
                   <label for="exampleInputPassword1">Edukacja: <?php echo $_SESSION['edukacja']; ?></label>
